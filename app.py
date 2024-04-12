@@ -141,7 +141,6 @@ def main():
 
 
     if st.sidebar.button("Usar todo poder da Aurora", key='power_aurora'):
-        userid_change()
         select_aurora_power("aurora")
         aurora_power_msg = "A partir deste momento, estarei aplicando todo o conhecimento adquirido da Aurora."
         streamlit_chat.message(
