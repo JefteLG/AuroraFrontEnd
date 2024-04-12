@@ -51,7 +51,6 @@ def stick_it_good():
                 div[data-testid="stVerticalBlock"] div:has(div.fixed-header) {
                     position: sticky;
                     top: 2.875rem;
-                    background-color: white;
                     z-index: 999;
                 }
                 .fixed-header {
@@ -78,13 +77,13 @@ def complete_messages(nbegin,nend, user_message):
             else:
                 response_content = response.get("body").get("output")
         elif response.get("status_code") == 400:
-            st.session_state.erro_400 = st.session_state.erro_400 + 1
             if st.session_state.erro_400 == 1:
                 response_content = "Desculpe, estou um pouco confuso com sua mensagem. Seria possível explicar de uma maneira diferente?"
             elif st.session_state.erro_400 == 2:
                 response_content = "Parece que estou tendo dificuldades para entender sua solicitação. Poderia fornecer mais detalhes para que eu possa ajudar melhor?"
             else:
-                response_content = "Infelizmente, ainda estou tendo problemas para entender. Recomendo que entre em contato com meu criador pelo e-mail jefte.job@gmail.com ou pelo telefone (63) 9 9998-9241 para relatar o problema em detalhes. Ele ficará felize em ajudar você a resolver essa questão."
+                response_content = "Ainda estou tendo problemas para entender. Recomendo que entre em contato com meu criador pelo e-mail jefte.job@gmail.com ou pelo telefone (63) 9 9998-9241 para relatar o problema em detalhes. Ele ficará felize em ajudar você a resolver essa questão."
+            st.session_state.erro_400 = st.session_state.erro_400 + 1
         else:
             response_content = "Identifiquei um problema temporário em nossos serviços que pode estar afetando sua experiência. Peço desculpas pelo inconveniente. Por favor, entre em contato com meu criado para relatar os detalhes do ocorrido. Email: jefte.job@gmail.com ou telefone: (63) 9 9998-9241. Agradecemos sua colaboração e compreensão."
 
