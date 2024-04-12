@@ -16,7 +16,7 @@ Este é um assistente virtual desenvolvido para ajudar nos estudos com informaç
 ```
 
 ### Alternar entre diferentes fontes de conhecimento (Aurora e +A Educação).
-- É possivel usar o chatbot usando apenas as informações nos dados indexados para pesquisa diponibilizado pela +A Educação ou usar todo poder da Aura que busca informações além dos dados indexados para responder as duvidas dos usuarios.
+- É possivel usar o chatbot usando apenas as informações nos dados indexados para pesquisa diponibilizado pela +A Educação ou usar todo poder da Aurora que busca informações além dos dados indexados para responder as duvidas dos usuarios.
 
 ### Identificar as principais dificuldades do usuário com base no histórico de mensagens.
 - Ao interagir com a Aurora é possivel gerar insights para entender os temas mais conversados. Com isso é possivel enviar conteudos customizados para cada usuario.
