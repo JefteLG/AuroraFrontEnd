@@ -112,9 +112,9 @@ def main():
         userid_change()
         select_aurora_power("mais_educa")
         st.session_state.erro_400 = 1
-        streamlit_chat.message("Nova Conversa Iniciada.",key='msg'+str(uuid.uuid4()))
-        streamlit_chat.message("Olá! ✨ Sou a Aurora, a assistente virtual da +A Educação! Estou aqui para tornar seus estudos mais fáceis! Como posso ajudar você hoje?",key='msg'+str(uuid.uuid4()))
-        streamlit_chat.message("Se quiser conferir alguns exemplos de interação, basta clicar no botão **Exemplos de Mensagens**! Estou aqui de prontidão para ajudar você nos estudos. 💫",key='msg'+str(uuid.uuid4()))
+        streamlit_chat.message("Nova Conversa Iniciada.",key='msg'+str(uuid.uuid4()), seed=2)
+        streamlit_chat.message("Olá! ✨ Sou a Aurora, a assistente virtual da +A Educação! Estou aqui para tornar seus estudos mais fáceis! Como posso ajudar você hoje?",key='msg'+str(uuid.uuid4()),seed=2)
+        streamlit_chat.message("Se quiser conferir alguns exemplos de interação, basta clicar no botão **Exemplos de Mensagens**! Estou aqui de prontidão para ajudar você nos estudos. 💫",key='msg'+str(uuid.uuid4()),seed=2)
 
     st.sidebar.text_input("User ID", value=st.session_state.userid, key='userid_text', disabled=True)
 
@@ -128,16 +128,16 @@ def main():
     if st.sidebar.button("Exemplos de Mensagens", key='show_example_conversation'):
         st.session_state.messages = []
         userid_change()
-        streamlit_chat.message("Nova Conversa Iniciada.",key='msg'+str(uuid.uuid4()))
+        streamlit_chat.message("Nova Conversa Iniciada.",key='msg'+str(uuid.uuid4()),seed=2)
         for i,up in enumerate(example_user_prompts):
             st.session_state.messages.append({"role": "user", "content": up})
             assistant_content = complete_messages(i,len(example_user_prompts),up)
             st.session_state.messages.append({"role": "assistant", "content": assistant_content})
     for i,message in enumerate(st.session_state.messages):
         if message["role"] == "user":
-            streamlit_chat.message(message["content"], is_user=True, key='msg'+str(uuid.uuid4()))
+            streamlit_chat.message(message["content"], is_user=True, key='msg'+str(uuid.uuid4()), seed=7)
         else:
-            streamlit_chat.message(message["content"], is_user=False, key='msg'+str(uuid.uuid4()))
+            streamlit_chat.message(message["content"], is_user=False, key='msg'+str(uuid.uuid4()), seed=2)
 
 
     if st.sidebar.button("Usar todo poder da Aurora", key='power_aurora'):
@@ -145,7 +145,7 @@ def main():
         aurora_power_msg = "A partir deste momento, estarei aplicando todo o conhecimento adquirido da Aurora."
         streamlit_chat.message(
             aurora_power_msg,
-            key='msg'+str(uuid.uuid4())
+            key='msg'+str(uuid.uuid4()), seed=2
         )
         st.session_state.messages.append({"role": "assistant", "content": aurora_power_msg})
 
@@ -155,11 +155,12 @@ def main():
         userid_change()
         select_aurora_power("mais_educa")
         st.session_state.messages.append({"role": "assistant", "content": "Nova Conversa Iniciada."})
-        streamlit_chat.message("Nova Conversa Iniciada.",key='msg'+str(uuid.uuid4()))
+        streamlit_chat.message("Nova Conversa Iniciada.",key='msg'+str(uuid.uuid4()), seed=2)
         aurora_power_msg = "A partir deste ponto, usarei apenas os conhecimentos da +A Educação para melhorar sua experiência."
         streamlit_chat.message(
             aurora_power_msg,
-            key='msg'+str(uuid.uuid4())
+            key='msg'+str(uuid.uuid4()),
+            seed=2
         )
         st.session_state.messages.append({"role": "assistant", "content": aurora_power_msg})
 
@@ -168,19 +169,20 @@ def main():
         show_user_difficulties_msg_ = "Aguarde um momento enquanto verifico seu histórico de mensagens para identificar as áreas em que posso ajudar melhor."
         streamlit_chat.message(
             show_user_difficulties_msg_,
-            key='msg'+str(uuid.uuid4())
+            key='msg'+str(uuid.uuid4()),
+            seed=2
         )
         st.session_state.messages.append({"role": "assistant", "content": show_user_difficulties_msg_})
         assistant_content = complete_messages(0, 1, "gaps_knowledge")
-        streamlit_chat.message(assistant_content, key='msg'+str(uuid.uuid4()))
+        streamlit_chat.message(assistant_content, key='msg'+str(uuid.uuid4()), seed=2)
         st.session_state.messages.append({"role": "assistant", "content": assistant_content})
 
 
     if user_content := st.chat_input("Type your question here."): # using streamlit's st.chat_input because it stays put at bottom, chat.openai.com style.
-        streamlit_chat.message(user_content, is_user=True, key='msg'+str(uuid.uuid4()))
+        streamlit_chat.message(user_content, is_user=True, key='msg'+str(uuid.uuid4()), seed=7)
         st.session_state.messages.append({"role": "user", "content": user_content})
         assistant_content = complete_messages(0, 1, user_content)
-        streamlit_chat.message(assistant_content, key='msg'+str(uuid.uuid4()))
+        streamlit_chat.message(assistant_content, key='msg'+str(uuid.uuid4()),seed=2)
         st.session_state.messages.append({"role": "assistant", "content": assistant_content})
         #len(st.session_state.messages)
 
